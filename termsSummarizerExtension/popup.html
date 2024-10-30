@@ -5,6 +5,7 @@
   <!-- Import Inter font -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" rel="stylesheet">
   <style>
+    /* General body styles */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       padding: 16px;
@@ -14,6 +15,7 @@
       color: #1a1a1a;
     }
 
+    /* Title styles */
     h2 {
       margin: 0 0 16px 0;
       color: #1a1a1a;
@@ -25,6 +27,7 @@
       text-align: center; /* Center the title */
     }
 
+    /* Button styles for the summarize button */
     #summarize-btn {
       background-color: #ff6b2b;
       color: white;
@@ -41,16 +44,19 @@
       font-family: 'Inter', sans-serif;
     }
 
+    /* Hover effect for summarize button */
     #summarize-btn:hover {
       background-color: #ff824f;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(255, 107, 43, 0.2);
     }
 
+    /* Active effect for summarize button */
     #summarize-btn:active {
       transform: translateY(0);
     }
 
+    /* Summary container styles */
     #summary {
       display: none;
       margin-top: 16px;
@@ -61,31 +67,36 @@
       font-size: 14px;
       line-height: 1.6;
       color: #2a2a2a;
-      white-space: pre-wrap;
+      white-space: pre-wrap; /* Preserve whitespace */
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
     }
 
+    /* Display summary if not empty */
     #summary:not(:empty) {
       display: block;
     }
 
+    /* Hover effect for summary container */
     #summary:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
+    /* Loading animation for summary container */
     @keyframes pulse {
       0% { opacity: 1; }
       50% { opacity: 0.4; }
       100% { opacity: 1; }
     }
 
+    /* Dots animation for loading status */
     @keyframes dots {
       0%, 20% { content: '.'; }
       40% { content: '..'; }
       60%, 100% { content: '...'; }
     }
 
+    /* Styles for loading state of summary */
     #summary.loading {
       display: block;
       position: relative;
@@ -96,17 +107,20 @@
       animation: pulse 1.5s ease-in-out infinite;
     }
 
+    /* Add "Summarizing" text during loading state */
     #summary.loading::before {
       content: 'Summarizing';
       font-weight: 500;
     }
 
+    /* Add animated dots during loading state */
     #summary.loading::after {
       content: '';
       animation: dots 1.5s steps(1, end) infinite;
       margin-left: 2px;
     }
 
+    /* Custom scrollbar styles for summary container */
     #summary::-webkit-scrollbar {
       width: 8px;
     }
@@ -125,6 +139,7 @@
       background: #ff824f;
     }
 
+    /* Styles for error state of summary container */
     #summary.error {
       display: block;
       color: #e74c3c;
@@ -146,10 +161,15 @@
   </style>
 </head>
 <body>
+  <!-- Title of the summarizer page -->
   <h2>AI Terms & Conditions Summarizer</h2>
+  <!-- Button to trigger summarization -->
   <button id="summarize-btn">Summarize</button>
+  <!-- Container for displaying the summary -->
   <div id="summary"></div>
+  <!-- Disclaimer message to users -->
   <div class="disclaimer">AI Models can make mistakes, please review all relevant legal documents before making any decisions.</div>
+  <!-- Link to external JavaScript file -->
   <script src="popup.js"></script>
 </body>
 </html>
