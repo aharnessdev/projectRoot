@@ -2,15 +2,154 @@
 <html>
 <head>
   <title>Terms Summarizer</title>
+  <!-- Import Inter font -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; padding: 10px; width: 300px; }
-    #summary { white-space: pre-wrap; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 16px;
+      width: 320px;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #1a1a1a;
+    }
+
+    h2 {
+      margin: 0 0 16px 0;
+      color: #1a1a1a;
+      font-size: 20px;
+      font-weight: 600;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+      letter-spacing: -0.02em;
+      text-align: center; /* Center the title */
+    }
+
+    #summarize-btn {
+      background-color: #ff6b2b;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    #summarize-btn:hover {
+      background-color: #ff824f;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 43, 0.2);
+    }
+
+    #summarize-btn:active {
+      transform: translateY(0);
+    }
+
+    #summary {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #2a2a2a;
+      white-space: pre-wrap;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    #summary:not(:empty) {
+      display: block;
+    }
+
+    #summary:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+
+    #summary.loading {
+      display: block;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    #summary.loading::before {
+      content: 'Summarizing';
+      font-weight: 500;
+    }
+
+    #summary.loading::after {
+      content: '';
+      animation: dots 1.5s steps(1, end) infinite;
+      margin-left: 2px;
+    }
+
+    #summary::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #summary::-webkit-scrollbar-track {
+      background: #f4f4f4;
+      border-radius: 4px;
+    }
+
+    #summary::-webkit-scrollbar-thumb {
+      background: #ff6b2b;
+      border-radius: 4px;
+    }
+
+    #summary::-webkit-scrollbar-thumb:hover {
+      background: #ff824f;
+    }
+
+    #summary.error {
+      display: block;
+      color: #e74c3c;
+      border-color: #e74c3c;
+      background-color: #fff5f5;
+    }
+
+    /* Disclaimer styles */
+    .disclaimer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: #666666;
+      padding: 8px;
+      border-radius: 6px;
+      background-color: rgba(255, 107, 43, 0.1);
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
-  <h2>Terms Summarizer</h2>
-  <button id="summarize-btn">Summarize Terms</button>
+  <h2>AI Terms & Conditions Summarizer</h2>
+  <button id="summarize-btn">Summarize</button>
   <div id="summary"></div>
+  <div class="disclaimer">AI Models can make mistakes, please review all relevant legal documents before making any decisions.</div>
   <script src="popup.js"></script>
 </body>
 </html>
