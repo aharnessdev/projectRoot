@@ -13,12 +13,81 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       let termsText = ''; // Initialize an empty string to store the scraped terms
       // Array of CSS selectors to identify terms and conditions sections on the page
       const selectors = [
+        // Existing selectors
         '#terms', '.terms',
         '#terms-and-conditions', '.terms-and-conditions',
         '#terms_of_service', '.terms_of_service',
         '#tos', '.tos',
-        '#terms-of-service', '.terms-of-service'
+        '#terms-of-service', '.terms-of-service',
+      
+        // Additional common selectors
+        '#legal', '.legal',
+        '#legal-notice', '.legal-notice',
+        '#user-agreement', '.user-agreement',
+        '#user-agreements', '.user-agreements',
+        '#agreement', '.agreement',
+        '#service-agreement', '.service-agreement',
+        '#service_agreement', '.service_agreement',
+        '#termsOfUse', '.termsOfUse',
+        '#terms_of_use', '.terms_of_use',
+        '#termsUse', '.termsUse',
+        '#terms-use', '.terms-use',
+        '#termsConditions', '.termsConditions',
+        '#terms_conditions', '.terms_conditions',
+        '#termsConditions', '.termsConditions',
+        '#termsConditions', '.termsConditions',
+        '#termsConditions', '.termsConditions',
+      
+        // Privacy-related selectors (if applicable)
+        '#privacy', '.privacy',
+        '#privacy-policy', '.privacy-policy',
+        '#privacy_policy', '.privacy_policy',
+        '#privacyPolicy', '.privacyPolicy',
+      
+        // Disclaimer selectors
+        '#disclaimer', '.disclaimer',
+      
+        // Footer-specific selectors
+        'footer #terms', 'footer .terms',
+        'footer #legal', 'footer .legal',
+        'footer #privacy-policy', 'footer .privacy-policy',
+        'footer #user-agreement', 'footer .user-agreement',
+      
+        // Common container classes
+        '.legal-container', '.terms-container',
+        '.terms-content', '.legal-content',
+        '.agreement-container', '.agreement-content',
+      
+        // Alternative naming conventions
+        '#termsService', '.termsService',
+        '#termsservice', '.termsservice',
+        '#termsofservice', '.termsofservice',
+        '#termsOfService', '.termsOfService',
+        '#terms_service', '.terms_service',
+      
+        // Combined selectors for more specificity
+        'div#terms', 'div.terms',
+        'section#terms-and-conditions', 'section.terms-and-conditions',
+        'div#terms_of_service', 'div.terms_of_service',
+        'section#tos', 'section.tos',
+        'div#terms-of-service', 'div.terms-of-service',
+      
+        // Attribute selectors (if IDs or classes contain keywords)
+        '[id*="terms"]', '[class*="terms"]',
+        '[id*="agreement"]', '[class*="agreement"]',
+        '[id*="legal"]', '[class*="legal"]',
+        '[id*="policy"]', '[class*="policy"]',
+        '[id*="tos"]', '[class*="tos"]',
+        '[id*="privacy"]', '[class*="privacy"]',
+        '[id*="disclaimer"]', '[class*="disclaimer"]',
+      
+        // Case-insensitive selectors (Note: CSS selectors are case-sensitive by default,
+        // but if your crawler supports case-insensitive matching, these can be useful)
+        '#Terms', '.Terms',
+        '#TERMS', '.TERMS',
+        // Add more case variations as needed
       ];
+      
 
       // Loop through each selector and find matching elements
       for (const selector of selectors) {
