@@ -13,7 +13,7 @@ app.post('/summarize', async (req, res) => {
   console.log('Text length:', text.length);
 
   try {
-    const prompt = `Please provide a concise summary of the following terms and conditions:
+    const prompt = `Your job is to provide a thorough review of the terms and conditions provided to the end user so they know what they are signing off on. Please note that the formatting may be a little strange because this is pulled straight from the webpage. Please provide a summary of of the following terms and conditions, making note of each major point. Please provide a succinct paragraph at the end that includes any potential implications that come with signing the terms and conditions.
 
 "${text}"
 
